@@ -6,7 +6,7 @@ const firebaseConfig = require('./firebaseConfig');
 
 const db = firebaseConfig.firestore;
 
-const bankApiControllers = require('./controllers/bankApiControllers');
+const userController = require('./controllers/userController');
 
 const cors = require('cors');
 
@@ -18,7 +18,14 @@ app.use(bodyParser.json()); // support json encoded bodies
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/', bankApiControllers.getUser);
+// app.get('/', (req, res) => {
+//   res.send("helloooo i can change 123111");
+// });
+
+app.get('/users', userController.getUser);
+
+app.get('/users/:userEmail', userController.getUserByUserEmail);
+
 
 // Listen to the App Engine-specified port, or 8080 otherwise
 const PORT = process.env.PORT || 8080;
