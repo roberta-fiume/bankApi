@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/users', userController.getUser);
 
-app.get('/users/:userEmail', userController.getUserByUserEmail);
+app.get('/users/:email/:password', userController.getUserByUserEmail);
 
 
 // Listen to the App Engine-specified port, or 8080 otherwise

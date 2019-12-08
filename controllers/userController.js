@@ -17,14 +17,32 @@ exports.getUserByUserEmail = (req, res) => {
    db.collection('bankUsers').get()
    .then(snapshot => {
       snapshot.docs.forEach(doc => {
-         let apiEmail = req.params.userEmail;
+         let apiEmail = req.params.email;
+         let apiPassword = req.params.password;
+
          let docEmail = doc.data().email;
+         let docPassword = doc.data().password;
          if (apiEmail === docEmail) {
-            res.send(JSON.stringify(doc.data()));
+            if (isPasswordValid(apiPassword, docPassword)) {
+               let message = {
+                  loggedIn: true,
+                  message: `Your login has been successful. Welcome, ${apiEmail}!`
+               }
+               res.status(200).send(message);
+            }
          } else {
-            res.status(404).send("USER NOT FOUND");
+            let message = {
+               loggedIn: false,
+               message: `Your login has not been successful. Try again!`
+            }
+            res.status(400).send(message);
          }
       })
     
    })
 }
+
+function isPasswordValid(apiPassword, userPassword) {
+   return apiPassword === userPassword;
+}
+
