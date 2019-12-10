@@ -35,7 +35,7 @@ exports.getUserByUserEmail = (req, res) => {
                loggedIn: false,
                message: `Your login has not been successful. Try again!`
             }
-            res.status(400).send(message);
+            res.send(message);
          }
       })
     
