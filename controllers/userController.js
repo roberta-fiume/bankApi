@@ -38,11 +38,27 @@ exports.getUserByUserEmail = (req, res) => {
             res.send(message);
          }
       })
-    
    })
 }
 
 function isPasswordValid(apiPassword, userPassword) {
    return apiPassword === userPassword;
+}
+
+exports.postUser = (req, res) => {
+   let email = req.body.email;
+   let password = req.body.password;
+   let newDoc = db.collection('bankUsers');
+   let dataAsJson = {
+       "email": email,
+       "password": password
+   };
+   newDoc.add(dataAsJson)
+   .then(docRef => {
+       dataAsJson.documentId = docRef.id
+       res.send(dataAsJson);
+   }).catch(err => {
+   console.log('Error creating document', err);
+ });
 }
 

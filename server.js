@@ -22,6 +22,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   res.send("helloooo i can change 123111");
 // });
 
+app.post('/users', userController.postUser),
+
 app.get('/users', userController.getUser);
 
 app.get('/users/:email/:password', userController.getUserByUserEmail);
