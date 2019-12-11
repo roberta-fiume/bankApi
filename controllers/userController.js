@@ -58,7 +58,6 @@ exports.getUserByUserEmail = (req, res) => {
          // console.log("THIS IS THE APIEMAIL", apiEmail);
             console.log("THIS IS THE DOCEMAIL", docEmail);
          if (apiEmail === docEmail && apiPassword === docPassword) {
-            
             let message = {
                loggedIn: true,
                message: `Your login has been successful. Welcome, ${apiEmail}!`
@@ -70,7 +69,7 @@ exports.getUserByUserEmail = (req, res) => {
          loggedIn: false,
          message: `Your login has not been successful. Try again!`
       }
-      res.status(400).send(message);
+      res.status(200).send(message);
    }).catch(err => {
       res.status(500).send("THERE HAS BEEN A SERVER ERROR.")
    })
