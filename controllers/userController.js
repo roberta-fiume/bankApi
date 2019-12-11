@@ -71,7 +71,7 @@ exports.getUserByUserEmail = (req, res) => {
       }
       res.status(200).send(message);
    }).catch(err => {
-      res.status(500).send("THERE HAS BEEN A SERVER ERROR.")
+      res.status(400).send("THERE HAS BEEN AN ERROR.")
    })
 }
 
