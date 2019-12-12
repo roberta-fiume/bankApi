@@ -50,13 +50,10 @@ exports.getUserByUserEmail = (req, res) => {
    .then(snapshot => {
       console.log("DOCS LENGTH", snapshot.docs.length)
       snapshot.docs.forEach(doc => {
-         console.log("IN FOR EACH");
          let apiEmail = req.params.email;
          let apiPassword = req.params.password;
          let docEmail = doc.data().email;
          let docPassword = doc.data().password;
-         // console.log("THIS IS THE APIEMAIL", apiEmail);
-            console.log("THIS IS THE DOCEMAIL", docEmail);
          if (apiEmail === docEmail && apiPassword === docPassword) {
             let message = {
                loggedIn: true,
@@ -75,20 +72,48 @@ exports.getUserByUserEmail = (req, res) => {
    })
 }
 
+// exports.postUser = (req, res) => {
+//    let email = req.body.email;
+//    let password = req.body.password;
+//    let newDoc = db.collection('bankUsers');
+//    let dataAsJson = {
+//        "email": email,
+//        "password": password
+//    };
+//    newDoc.add(dataAsJson)
+//    .then(docRef => {
+//       console.log("EMAILLLL", docRef.data().email);
+//        dataAsJson.documentId = docRef.id;
+//        res.send(dataAsJson);
+//    }).catch(err => {
+//       res.status(400).send("THERE HAS BEEN AN ERROR.")
+//  });
+// }
+
 exports.postUser = (req, res) => {
    let email = req.body.email;
    let password = req.body.password;
    let newDoc = db.collection('bankUsers');
-   let dataAsJson = {
-       "email": email,
-       "password": password
-   };
-   newDoc.add(dataAsJson)
-   .then(docRef => {
-       dataAsJson.documentId = docRef.id
-       res.send(dataAsJson);
-   }).catch(err => {
-   console.log('Error creating document', err);
- });
+   db.collection('bankUsers').get()
+   .then(snapshot => {
+      console.log("DOCS LENGTH", snapshot.docs.length)
+      snapshot.docs.forEach(doc => {
+         if (doc.data().email === email && doc.data().password === password) {
+            let message = {
+               registered: false,
+               message: "You are already registered. Please log in."
+            }
+            res.status(200).send(message); 
+         }
+      })
+      let dataAsJson = {
+         "email": email,
+         "password": password
+      }
+      newDoc.add(dataAsJson);
+      res.status(200).send("YOUR REGISTRATION IS COMPLETED"); 
+   })
+ 
 }
+
 
