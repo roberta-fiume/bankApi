@@ -111,7 +111,11 @@ exports.postUser = (req, res) => {
          "password": password
       }
       newDoc.add(dataAsJson);
-      res.status(200).send("YOUR REGISTRATION IS COMPLETED"); 
+      let registrationSuccessful = {
+         registered: true,
+         message: "Your registration is completed."
+      }
+      res.status(200).send(registrationSuccessful); 
    })
  
 }
