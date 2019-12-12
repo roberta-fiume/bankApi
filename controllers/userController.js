@@ -96,7 +96,6 @@ exports.postUser = (req, res) => {
    let newDoc = db.collection('bankUsers');
    db.collection('bankUsers').get()
    .then(snapshot => {
-      console.log("DOCS LENGTH", snapshot.docs.length)
       snapshot.docs.forEach(doc => {
          if (doc.data().email === email && doc.data().password === password) {
             let message = {
@@ -116,8 +115,9 @@ exports.postUser = (req, res) => {
          message: "Your registration is completed."
       }
       res.status(200).send(registrationSuccessful); 
+   }).catch(err => {
+      res.status(400).send("THERE HAS BEEN A SERVER ERROR.")
    })
- 
 }
 
 
