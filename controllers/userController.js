@@ -120,4 +120,17 @@ exports.postUser = (req, res) => {
    })
 }
 
+exports.getAccount = (req, res) => {
+    let accountInfo = [];
+   db.collection('accountInfo').get()
+   .then(snapshot => {
+      snapshot.docs.forEach(doc => {
+         accountInfo.push(doc.data());
+      })
+      res.send(JSON.stringify(accountInfo));
+   }).catch(err => {
+       res.send("THERE HAS BEEN A SERVER ERROR", err);
+   })
+}
+
 
