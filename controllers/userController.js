@@ -87,7 +87,7 @@ exports.getAccount = (req, res) => {
 
 
 exports.postTransaction = (req, res) => {
-   let accountNumber = req.body. accountNumber;
+   let accountNumber = req.body.accountNumber;
    let date = req.body.date;
    let amount = req.body.amount;
    let recipient = req.body.recipient;
