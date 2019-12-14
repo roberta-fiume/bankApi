@@ -59,7 +59,9 @@ exports.postUser = (req, res) => {
          "email": email,
          "password": password
       }
+
       newDoc.add(dataAsJson);
+
       let registrationSuccessful = {
          registered: true,
          message: "Your registration is completed."
@@ -68,6 +70,46 @@ exports.postUser = (req, res) => {
    }).catch(err => {
       res.status(400).send("THERE HAS BEEN A SERVER ERROR.")
    })
+}
+
+exports.getAccount = (req, res) => {
+    let accountInfo = [];
+   db.collection('accountInfo').get()
+   .then(snapshot => {
+      snapshot.docs.forEach(doc => {
+         accountInfo.push(doc.data());
+      })
+      res.send(JSON.stringify(accountInfo));
+   }).catch(err => {
+       res.send("THERE HAS BEEN A SERVER ERROR", err);
+   })
+}
+
+
+exports.postTransaction = (req, res) => {
+   let accountNumber = req.body. accountNumber;
+   let date = req.body.date;
+   let amount = req.body.amount;
+   let recipient = req.body.recipient;
+
+   let transactions = db.collection('accountInfoTransaction');
+
+   let infoTransactionAsJson = {
+    "accountNumber": accountNumber,
+    "date": date,
+    "amount": amount,
+    "recipient": recipient
+    }
+
+    transactions.add(infoTransactionAsJson).then(docRef => {
+         let transactionSuccessful = {
+            transactionStatus: true,
+            message: "Transaction completed successfully."
+        }
+        res.status(200).send(transactionSuccessful);
+    }).catch(err => {
+        res.send("THERE HAS BEEN A SERVER ERROR", err);
+    })
 }
 
 

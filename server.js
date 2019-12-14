@@ -28,6 +28,10 @@ app.get('/users', userController.getUser);
 
 app.get('/users/:email/:password', userController.getUserByUserEmail);
 
+app.get('/account', userController.getAccount);
+
+app.post('/account/:accountNumber/:date/:amount/:recipient', userController.postTransaction);
+
 
 // Listen to the App Engine-specified port, or 8080 otherwise
 const PORT = process.env.PORT || 8080;
