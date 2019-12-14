@@ -18,7 +18,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get('/account/:number/', accountsController.createAccountNumber);
+app.post('/account', accountsController.createAccount);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
