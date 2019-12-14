@@ -40,7 +40,8 @@ exports.getUserByUserEmail = (req, res) => {
    })
 }
 
-exports.postUser = (req, res) => {
+exports.createUser = (req, res) => {
+   let accountNumber = req.body.accountNumber;
    let email = req.body.email;
    let password = req.body.password;
    let newDoc = db.collection('bankUsers');
@@ -57,7 +58,8 @@ exports.postUser = (req, res) => {
       })
       let dataAsJson = {
          "email": email,
-         "password": password
+         "password": password,
+         "accountNumber": accountNumber
       }
 
       newDoc.add(dataAsJson);
