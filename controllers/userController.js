@@ -22,10 +22,12 @@ exports.getUserByUserEmail = (req, res) => {
          let apiPassword = req.params.password;
          let docEmail = doc.data().email;
          let docPassword = doc.data().password;
+         let accountNumber = doc.data().accountNumber;
          if (apiEmail === docEmail && apiPassword === docPassword) {
             let message = {
                loggedIn: true,
-               message: `Your login has been successful. Welcome, ${apiEmail}!`
+               message: `Your login has been successful. Welcome, ${apiEmail}!`,
+               accountNumber: accountNumber
             }
             res.status(200).send(message); 
          }
