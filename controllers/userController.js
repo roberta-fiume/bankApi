@@ -27,7 +27,8 @@ exports.getUserByUserEmail = (req, res) => {
             let message = {
                loggedIn: true,
                message: `Your login has been successful. Welcome, ${apiEmail}!`,
-               accountNumber: accountNumber
+               accountNumber: accountNumber,
+               email: docEmail
             }
             res.status(200).send(message); 
          }
