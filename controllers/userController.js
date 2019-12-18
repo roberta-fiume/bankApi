@@ -45,6 +45,7 @@ exports.getUserByUserEmail = (req, res) => {
 
 exports.createUser = (req, res) => {
    let accountNumber = req.body.accountNumber;
+   let balance = req.body.balance;
    let email = req.body.email;
    let password = req.body.password;
    let newDoc = db.collection('bankUsers');
@@ -62,7 +63,8 @@ exports.createUser = (req, res) => {
       let dataAsJson = {
          "email": email,
          "password": password,
-         "accountNumber": accountNumber
+         "accountNumber": accountNumber,
+         "balance": balance
       }
 
       newDoc.add(dataAsJson);
@@ -89,32 +91,5 @@ exports.getAccount = (req, res) => {
        res.send("THERE HAS BEEN A SERVER ERROR", err);
    })
 }
-
-
-// exports.postTransaction = (req, res) => {
-//    let accountNumber = req.body.accountNumber;
-//    let date = req.body.date;
-//    let amount = req.body.amount;
-//    let recipient = req.body.recipient;
-
-//    let transactions = db.collection('accountInfoTransaction');
-
-//    let infoTransactionAsJson = {
-//     "accountNumber": accountNumber,
-//     "date": date,
-//     "amount": amount,
-//     "recipient": recipient
-//     }
-
-//     transactions.add(infoTransactionAsJson).then(docRef => {
-//          let transactionSuccessful = {
-//             transactionStatus: true,
-//             message: "Transaction completed successfully."
-//         }
-//         res.status(200).send(transactionSuccessful);
-//     }).catch(err => {
-//         res.send("THERE HAS BEEN A SERVER ERROR", err);
-//     })
-// }
 
 
