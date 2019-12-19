@@ -60,3 +60,19 @@ exports.createTransactions = (req, res) => {
         res.send("THERE HAS BEEN A SERVER ERROR", err);
     })
 }
+
+exports.getTransactions = (req, res) => {
+    let transactionOwnerAccountNumber = req.params.accountId;
+    let transactions = [];
+    db.collection('accounts').doc(transactionOwnerAccountNumber).collection('transactions')
+    .get()
+    .then(snapshot => {
+        console.log("SNAPSHOT", snapshot)
+        snapshot.docs.forEach(doc => {
+            transactions.push(doc.data());
+        })
+        res.send(JSON.stringify(transactions));
+    }).catch(err => {
+       res.status(400).send("THERE HAS BEEN AN ERROR.")
+    })
+}

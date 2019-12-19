@@ -28,11 +28,13 @@ app.get('/users/:email/:password', userController.getUserByUserEmail);
 
 
 
-app.get('/account', userController.getAccount);
+// app.get('/account', userController.getAccount);
 
 app.post('/accounts', accountsController.createAccount);
 
 app.post('/accounts/:accountId/transactions', accountsController.createTransactions);
+
+app.get('/accounts/:accountId/transactions', accountsController.getTransactions);
 
 
 
