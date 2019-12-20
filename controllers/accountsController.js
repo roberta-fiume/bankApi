@@ -19,72 +19,24 @@ exports.createAccount = (req, res) => {
     })
 }
 
-// exports.createTransactions = (req, res) => {
-//     let transactionOwnerAccountNumber = req.params.accountId;
-
-//     let type = req.body.type
-//     let senderAccountNumber;
-//     let recipientAccountNumber;
-
-//     if (type === "send") {
-//         senderAccountNumber = transactionOwnerAccountNumber;
-//         recipientAccountNumber = req.body.recipientAccountNumber;
-//     } else {
-//         senderAccountNumber = req.body.senderAccountNumber;
-//         recipientAccountNumber = transactionOwnerAccountNumber;
-//     }
-
-//     let senderReference = req.body.senderReference;
-//     let date = req.body.date;
-//     let amount = req.body.amount;
-//     let recipientReference = req.body.recipientReference;
-
-//     let infoTransactionAsJson = {
-//         "senderReference": senderReference,
-//         "senderAccountNumber": senderAccountNumber,
-//         "date": date,
-//         "amount": amount,
-//         "recipientReference": recipientReference,
-//         "recipientAccountNumber": recipientAccountNumber,
-//         "type": type
-//     }
-
-//     db.collection('accounts').doc(transactionOwnerAccountNumber).collection('transactions') 
-//     .add(infoTransactionAsJson).then(docRef => {
-//         let transactionSuccessful = {
-//             transactionStatus: true,
-//             message: "Transaction completed successfully."
-//         }
-//         res.status(200).send(transactionSuccessful);
-//     }).catch(err => {
-//         res.send("THERE HAS BEEN A SERVER ERROR", err);
-//     })
-// }
-
-
-
-
 exports.createTransactions = (req, res) => {
     let transactionOwnerAccountNumber = req.params.accountId;
 
     let type = req.body.type
     let senderAccountNumber;
     let recipientAccountNumber;
-    let amount,
 
     if (type === "send") {
         senderAccountNumber = transactionOwnerAccountNumber;
         recipientAccountNumber = req.body.recipientAccountNumber;
-        amount = "-" + req.body.amount
     } else {
         senderAccountNumber = req.body.senderAccountNumber;
         recipientAccountNumber = transactionOwnerAccountNumber;
-        amount = "+" + req.body.amount
     }
 
     let senderReference = req.body.senderReference;
     let date = req.body.date;
-    // let amount = req.body.amount;
+    let amount = req.body.amount;
     let recipientReference = req.body.recipientReference;
 
     let infoTransactionAsJson = {
@@ -108,8 +60,6 @@ exports.createTransactions = (req, res) => {
         res.send("THERE HAS BEEN A SERVER ERROR", err);
     })
 }
-
-
 
 
 
