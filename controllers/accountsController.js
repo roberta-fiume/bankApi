@@ -71,6 +71,7 @@ exports.createTransactions = (req, res) => {
     let senderAccountNumber;
     let recipientAccountNumber;
     let amount,
+    
 
     if (type === "send") {
         senderAccountNumber = transactionOwnerAccountNumber;
