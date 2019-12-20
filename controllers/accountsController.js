@@ -36,7 +36,7 @@ exports.createTransactions = (req, res) => {
 
     let senderReference = req.body.senderReference;
     let date = req.body.date;
-    let amount = req.body.amount;
+    let amount = parseInt(req.body.amount, 10);
     let recipientReference = req.body.recipientReference;
 
     let infoTransactionAsJson = {
