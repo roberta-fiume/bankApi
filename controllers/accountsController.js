@@ -6,7 +6,7 @@ exports.createAccount = (req, res) => {
     let uud = uuidv1();
     let accountAsJson = {
         "number": uud,
-        "balance": 0
+        "balance": 5000
     }
 
      db.collection('accounts')
