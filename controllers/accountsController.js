@@ -78,3 +78,11 @@ exports.getTransactions = (req, res) => {
        res.status(400).send("THERE HAS BEEN AN ERROR.")
     })
 }
+
+exports.getHello = (req, res) => {
+    res.send("HELLO");
+}
+
+exports.getHello123 = (req, res) => {
+    return "hello123";
+}
