@@ -61,8 +61,6 @@ exports.createTransactions = (req, res) => {
     })
 }
 
-
-
 exports.getTransactions = (req, res) => {
     let transactionOwnerAccountNumber = req.params.accountId;
     let transactions = [];
@@ -80,7 +78,7 @@ exports.getTransactions = (req, res) => {
 }
 
 exports.getHello = (req, res) => {
-    res.send("HELLO");
+    return "HELLO";
 }
 
 exports.getHello123 = (req, res) => {

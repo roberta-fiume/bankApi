@@ -7,8 +7,9 @@ describe('accounts controller', () => {
         const mockRequest = httpMocks.createRequest();
         const mockResponse = httpMocks.createResponse();
         //When
-        accountsController.getHello(mockRequest, mockResponse);
+        let result = accountsController.getHello(mockRequest, mockResponse);
         //Then
-        expect(mockResponse._getData()).toBe('HELLO');
+        expect(result).toEqual('HELLO');
+        // expect(mockResponse._getData()).toBe('HELLO');
     });
-  });
+  })

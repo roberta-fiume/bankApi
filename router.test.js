@@ -5,7 +5,7 @@ jest.mock('./controllers/accountsController');
 const mockAccountController = require('./controllers/accountsController');
 
 mockAccountController.getHello.mockImplementation(() => {
-    console.log("IM INSIDE MOCKKKKKKK");
+    return "mock hello";
 });
 
 mockAccountController.getHello123.mockImplementation(() => {
@@ -32,24 +32,25 @@ describe("server test", () => {
     // })
 
     // it("should get hello", (done) => {
-    it("should get hello", async () => {
-        //Given
-        jest.setTimeout(15000);
-        console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 000000000000");
+    // it("should get hello123", async () => {
+    //     //Given
+    //     console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 000000000000");
 
+    //     //When
+    //     const response = await request(app).get('/hello123');
+    //     console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1111111111");
+    //     //Then
+    //     expect(response.statusCode).toBe(200);
+    //     expect(response.body).toEqual({"hello123": "omg hello"});
+    //     expect(mockAccountController.getHello123).toHaveBeenCalled();
+    // })
+
+    it("should get hello", async() => {
+        //Given
         //When
-        const response = await request(app).get('/hello123');
-        console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1111111111");
-        expect(response.statusCode).toBe(200);
-        expect(response.body).toEqual({"hello123": "omg hello"});
-        expect(mockAccountController.getHello123).toHaveBeenCalled();
-            // .then(() => {
-            //     console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1111111111");
-            //     expect(mockAccountController.getHello).toHaveBeenCalled();
-            //     // done();
-            // });
+        const response = await request(app).get('/hello');
         //Then
-        // expect(mockAccountsController.getHello).toHaveBeenCalled();
-        // expect(mockAccountController.getHello).toHaveBeenCalled();
+        expect(mockAccountController.getHello).toHaveBeenCalled();
     })
 })
+
