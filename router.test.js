@@ -32,18 +32,18 @@ describe("server test", () => {
     // })
 
     // it("should get hello", (done) => {
-    // it("should get hello123", async () => {
-    //     //Given
-    //     console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 000000000000");
+    it("should get hello123", async () => {
+        //Given
+        console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 000000000000");
 
-    //     //When
-    //     const response = await request(app).get('/hello123');
-    //     console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1111111111");
-    //     //Then
-    //     expect(response.statusCode).toBe(200);
-    //     expect(response.body).toEqual({"hello123": "omg hello"});
-    //     expect(mockAccountController.getHello123).toHaveBeenCalled();
-    // })
+        //When
+        const response = await request(app).get('/hello123');
+        console.log("IM HEREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE 1111111111");
+        //Then
+        expect(response.statusCode).toBe(200);
+        expect(response.body).toEqual({"hello123": "omg hello"});
+        expect(mockAccountController.getHello123).toHaveBeenCalled();
+    })
 
     it("should get hello", async() => {
         //Given
